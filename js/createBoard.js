@@ -1,6 +1,14 @@
 btnCreateBoard = document.getElementById("create-new-board");
 modalBoard = document.getElementById("modal-create-board");
 closeModal = document.getElementById("close-modal");
+allColors = document.querySelectorAll(".set-color");
+bgBoardTitle = document.querySelector(".create-board__title");
+console.log(bgBoardTitle);
+
+allColors.forEach((colorSelected) => {
+  colorSelected.onclick = () =>
+    (bgBoardTitle.style.background = colorSelected.dataset.color);
+});
 
 btnCreateBoard.onclick = () => showModalCreateBoard(modalBoard);
 closeModal.onclick = () => hideModalCreateBoard(modalBoard);
