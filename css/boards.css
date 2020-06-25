@@ -95,6 +95,26 @@ body {
   align-items: center;
 }
 
+/* profile */
+
+.form__background {
+  margin: 30px 0;
+}
+
+.form__button {
+  border: none;
+  cursor: pointer;
+}
+
+.form__button-ligth {
+  background-color: #ebecf0;
+  color: #172b4d;
+}
+.form__button-red {
+  background-color: #cf513d;
+  color: #fff;
+}
+
 @media (min-width: 768px) {
   .list-boards {
     grid-template-columns: repeat(2, 1fr);
