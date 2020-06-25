@@ -1,0 +1,220 @@
+.section-title {
+  color: #172b4d;
+  padding-left: 2.5em;
+}
+
+/* menu boards */
+
+.boards {
+  display: grid;
+  grid-template-columns: 241px 1fr;
+}
+
+.menu-boards {
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu-boards li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.menu-boards button {
+  text-decoration: none;
+  outline: none;
+  border: none;
+  padding: 6px 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 240px;
+  text-align: left;
+  background-color: white;
+  transition: all 0.2s ease;
+  color: #172b4d;
+}
+
+.active {
+  background-color: #e4f0f6 !important;
+  color: #0079bf !important;
+}
+
+.sections {
+  display: none;
+}
+
+.section-active {
+  display: grid;
+  padding: 0 30px;
+}
+
+/* list boards */
+
+.list-boards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 96px;
+  gap: 1em;
+}
+
+.list-boards__card {
+  background-color: #4bbf6b;
+  border-radius: 3px;
+  padding: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.list-boards__card:hover .list-boards__options {
+  display: block;
+}
+
+.list-boards__new {
+  background-color: #f0f2f5;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 8px;
+  color: #172b4d;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.list-boards__options {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.list-boards__options button {
+  outline: none;
+}
+
+.list-boards__star {
+  border: none;
+
+  background: none;
+  cursor: pointer;
+}
+
+/* modal new board */
+
+.modal-new-board {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  background: rgba(63, 63, 63, 0.8);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-board__title {
+  background-color: #0079bf;
+  color: #fff;
+  width: 190px;
+  height: 70px;
+  border-radius: 3px;
+  padding: 6px 8px;
+  margin: 0 0.5em 0.5em 0;
+}
+
+.create-board__input {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 3px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.create-board__close {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.create-board__colors {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 20px;
+}
+
+.create-board__color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background-color: teal;
+  cursor: pointer;
+}
+
+.set-color[data-color="#0079BF"] {
+  background: #0079bf;
+}
+.set-color[data-color="#D29034"] {
+  background: #d29034;
+}
+.set-color[data-color="#519839"] {
+  background: #519839;
+}
+.set-color[data-color="#B04632"] {
+  background: #b04632;
+}
+.set-color[data-color="#89609E"] {
+  background: #89609e;
+}
+.set-color[data-color="#CD5A90"] {
+  background: #cd5a90;
+}
+.set-color[data-color="#4BBF6B"] {
+  background: #4bbf6b;
+}
+.set-color[data-color="#0AAECB"] {
+  background: #0aaecb;
+}
+.set-color[data-color="#838C90"] {
+  background: #838c90;
+}
+
+/* profile */
+
+.form__background {
+  margin: 30px 0;
+}
+
+.form__button {
+  border: none;
+  cursor: pointer;
+}
+
+.form__button-ligth {
+  background-color: #ebecf0;
+  color: #172b4d;
+}
+.form__button-red {
+  background-color: #cf513d;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .list-boards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .list-boards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

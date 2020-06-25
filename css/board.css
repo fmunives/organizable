@@ -1,0 +1,151 @@
+.board__info {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+/* .board__info * {
+  margin: 10px;
+} */
+
+.board__info {
+  margin-left: 15px;
+}
+
+.board__title {
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.board__icon {
+  width: 32px;
+  height: 32px;
+  /* line-height: 32px; */
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 1.2em;
+  background-color: rgb(212, 212, 212, 0.4);
+}
+
+.fa-star {
+  color: #c3be0e;
+}
+
+.board {
+  display: flex;
+  margin: auto 10px;
+}
+
+.board__list {
+  background: rgb(235, 236, 240, 0.85);
+  min-width: 272px;
+  max-width: 272px;
+  margin: 5px;
+  padding: 1%;
+  border-radius: 2px;
+}
+
+.list__title {
+  margin: auto auto 5%;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list__title--greyed {
+  color: #5e6c84;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.list__title--greyed:hover {
+  background-color: rgb(235, 236, 240, 1);
+}
+
+.task {
+  background: #ffffff;
+  border-radius: 2px;
+  margin: 3% auto;
+  padding: 0;
+  box-shadow: 0px 1px 0px rgba(9, 30, 66, 0.25);
+}
+
+.task__colors {
+  height: 10px;
+  max-width: 25%;
+}
+
+.task__description {
+  padding: 5px;
+  margin: 5px auto;
+  font-size: 14px;
+  line-height: 20px;
+  color: #172b4d;
+}
+
+.task__tags {
+  display: flex;
+  height: 5px;
+  margin: 6px;
+}
+
+.list__new-task {
+  margin: 15px 5px 5px;
+}
+
+.board__new-list {
+  margin: 5px 5px;
+}
+
+.list__input,
+.board__input {
+  margin: 8px auto;
+  width: 224px;
+  border: 2px solid #0079bf;
+  border-radius: 3px;
+  padding: 3px;
+  outline: none;
+}
+
+.board__input {
+  margin: 0 auto 8px;
+}
+
+.list__submit,
+.board__submit {
+  width: 77px;
+  height: 32px;
+  background: #5aac44;
+  border-radius: 3px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.task__colors {
+  height: 8px;
+  width: 40px;
+  margin: 2px;
+  border-radius: 4px;
+}
+
+.task__colors--yellow {
+  background: yellow;
+}
+
+.task__colors--green {
+  background: green;
+}
+
+.task__colors--blue {
+  background: blue;
+}
+
+.task__colors--red {
+  background: red;
+}
