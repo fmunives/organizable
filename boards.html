@@ -39,8 +39,8 @@
           <div class="list-boards">
             <div class="list-boards__card">
               Home
-              <div class="list-boards__options" >
-                <button class="list-boards__star" ><img src="./images/small-star.svg" alt=""></button>
+              <div class="list-boards__options show" >
+                <button class="list-boards__star " ><img src="./images/small-star.svg" alt=""></button>
               </div>
             </div>
             <div class="list-boards__card">Codeable</div>
@@ -53,14 +53,16 @@
           </h3>
           <div class="list-boards">
             <div class="list-boards__card">DOTA
-              <div class="list-boards__options hide" >
+              <div class="list-boards__options" >
                 <button class="list-boards__star" ><img src="./images/small-close.svg" alt=""></button>
                 <button class="list-boards__star" ><img src="./images/small-start-white.svg" alt=""></button>
               </div>
             </div>
             <div class="list-boards__card">Consulting</div>
             <div class="list-boards__card">LinkedIn</div>
-            <div class="list-boards__new">Create new board</div>
+            <div class="list-boards__new" id="create-new-board" >
+              Create new board
+            </div>
           </div>
         </div>
       </section>
@@ -134,6 +136,31 @@
         log out
       </section>
     </main>
+    <div id="modal-create-board" class="modal-new-board hide">
+      <form class="create-board">
+        <div class="flex" >
+          <div class="create-board__title" >
+            <div class="flex" >
+              <input class="create-board__input" type="text" value="Board title" required >
+              <button class="create-board__close" id="close-modal"><img  src="./images/close-white.svg" alt=""></button>
+            </div>
+          </div>
+          <div class="create-board__colors">
+            <div class="create-board__color set-color" data-color="#0079BF"></div>
+            <div class="create-board__color set-color" data-color="#D29034"></div>
+            <div class="create-board__color set-color" data-color="#519839"></div>
+            <div class="create-board__color set-color" data-color="#B04632"></div>
+            <div class="create-board__color set-color" data-color="#89609E"></div>
+            <div class="create-board__color set-color" data-color="#CD5A90"></div>
+            <div class="create-board__color set-color" data-color="#4BBF6B"></div>
+            <div class="create-board__color set-color" data-color="#0AAECB"></div>
+            <div class="create-board__color set-color" data-color="#838C90"></div>
+          </div>
+        </div>
+        <div><input class="button"  type="submit" value="Create board"></div>
+      </form>
+    </div>
     <script src="./js/menuBoards.js"></script>
+    <script src="./js/createBoard.js"></script>
   </body>
 </html>
