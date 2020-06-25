@@ -13,7 +13,11 @@
     <link rel="stylesheet" href="./css/boards.css" />
   </head>
   <body>
-    <!-- header -->
+    <header class="header">
+      <a class="logo" href="index.html">
+        <img src="images/organizable.svg" alt="Organizable" />
+      </a>
+    </header>
     <main class="container boards">
       <nav>
         <ul class="menu-boards">
@@ -34,9 +38,9 @@
           </h3>
           <div class="list-boards">
             <div class="list-boards__card">
-              <a href="">Home</a>
-              <div class="" >
-                <button><img src="./images/small-star.svg" alt=""></button>
+              Home
+              <div class="list-boards__options" >
+                <button class="list-boards__star" ><img src="./images/small-star.svg" alt=""></button>
               </div>
             </div>
             <div class="list-boards__card">Codeable</div>
@@ -48,7 +52,12 @@
             <img src="./images/codeable.svg" alt="" /> Your Boards
           </h3>
           <div class="list-boards">
-            <div class="list-boards__card">DOTA</div>
+            <div class="list-boards__card">DOTA
+              <div class="list-boards__options hide" >
+                <button class="list-boards__star" ><img src="./images/small-close.svg" alt=""></button>
+                <button class="list-boards__star" ><img src="./images/small-start-white.svg" alt=""></button>
+              </div>
+            </div>
             <div class="list-boards__card">Consulting</div>
             <div class="list-boards__card">LinkedIn</div>
             <div class="list-boards__new">Create new board</div>
@@ -61,7 +70,9 @@
             <img src="./images/close.svg" alt="" /> Closed boards
           </h3>
           <div class="list-boards">
-            <div class="list-boards__card">Codeable Postulation</div>
+            <div class="list-boards__card">Codeable Postulation
+              
+            </div>
             <div class="list-boards__card">Odin Project</div>
           </div>
         </div>

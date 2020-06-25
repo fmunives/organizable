@@ -81,6 +81,11 @@ body {
   color: #fff;
   font-weight: bold;
   cursor: pointer;
+  position: relative;
+}
+
+.list-boards__card:hover .list-boards__options {
+  display: block;
 }
 
 .list-boards__new {
@@ -93,6 +98,22 @@ body {
   justify-content: center;
   display: flex;
   align-items: center;
+}
+
+.list-boards__options {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.hide {
+  display: none;
+}
+
+.list-boards__star {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 /* profile */

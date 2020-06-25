@@ -42,8 +42,9 @@ function switchButton(button) {
       showCurrentlySection(myProfile);
       break;
     default:
-      hideOthersSections();
-      showCurrentlySection(logout);
+      window.location.href = "login.html";
+      // hideOthersSections();
+      // showCurrentlySection(logout);
       break;
   }
 }
