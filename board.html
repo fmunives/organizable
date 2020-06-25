@@ -4,19 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/de8d320d41.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/board.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/board.css" />
+    <link rel="stylesheet" href="css/sign-up.css" />
     <title>Board</title>
   </head>
   <body style="background-color: darkcyan;">
-    <header style="background-color: black;">
-      <h1 style="color: white;">organizable</h1>
+    <header class="header">
+      <a class="logo" href="index.html">
+        <img src="images/organizable.svg" alt="Organizable" />
+      </a>
     </header>
-    <main class="container">
+
+    <main class="main">
+
       <div class="board__info">
         <h1 class="board__title">Codeable</h1>
         <i class="far fa-star board__icon"></i>
       </div>
+
       <section class="board">
         <div class="board__list">
           <h1 class="list__title">To Do</h1>
@@ -39,31 +45,26 @@
           </article>
 
           <form method="post" class="list__new-task">
-            <input type="text" name="new-task" class="list__input"  placeholder="Create a new task here"/>
+            <input type="text" name="new-task" class="list__input"  placeholder="Create a new task"/>
             <button class="list__submit" type="submit">Add Card</button>
             <i class="fas fa-times"></i>
           </form>
         </div>
 
-        <article class="board__list">
-          <h1 class="list__title">To Do</h1>
-        </article>
-
-        <article class="board__list">
-          <h1 class="list__title">To Do</h1>
-        </article>
-        <article class="board__list">
-          <h1 class="list__title">To Do</h1>
-        </article>
-        <article class="board__list">
-          <h1 class="list__title">To Do</h1>
-        </article>
-        <article class="board__list">
-          <h1 class="list__title">To Do</h1>
-        </article>
-        <article class="board__list">
-          <h1 class="list__title">To Do</h1>
-        </article>
+        <div class="board__list">
+          <h1 class="list__title list__title--greyed">
+            <i class="fas fa-plus"></i>
+            Add another card
+          </h1>
+        </div>
+        
+        <div class="board__list">
+          <form method="post" class="board__new-list">
+            <input type="text" name="new-task" class="board__input"  placeholder="Enter list title"/>
+            <button class="board__submit" type="submit">Add List</button>
+            <i class="fas fa-times"></i>
+          </form>
+        </div>
       </section>
     </main>
   </body>
