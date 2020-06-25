@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Boards</title>
+    <link rel="stylesheet" href="./css/boards.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <main class="container boards">
+      <nav>
+        <ul class="menu-boards">
+          <li>
+            <button id="btnMyBoards" class="active option">My boards</button>
+          </li>
+          <li>
+            <button id="btnClosedBoard" class="option">Closed boards</button>
+          </li>
+          <li><button id="btnProfile" class="option">My Profile</button></li>
+          <li><button id="btnLogout" class="option">Log out</button></li>
+        </ul>
+      </nav>
+      <section id="myBoards" class="sections section-active">
+        <div>
+          <h3 class="section-title">
+            <img src="./images/star.svg" alt="" /> Your Starred Boards
+          </h3>
+          <div class="list-boards">
+            <div class="list-boards__card">
+              <a href="">Home</a>
+              <div class="" >
+                <button><img src="./images/small-star.svg" alt=""></button>
+              </div>
+            </div>
+            <div class="list-boards__card">Codeable</div>
+            <div class="list-boards__card">Portafolio</div>
+          </div>
+        </div>
+        <div>
+          <h3 class="section-title">
+            <img src="./images/codeable.svg" alt="" /> Your Boards
+          </h3>
+          <div class="list-boards">
+            <div class="list-boards__card">DOTA</div>
+            <div class="list-boards__card">Consulting</div>
+            <div class="list-boards__card">LinkedIn</div>
+            <div class="list-boards__new">Create new board</div>
+          </div>
+        </div>
+      </section>
+      <section id="closedBoards" class="sections">
+        <div>
+          <h3 class="section-title">
+            <img src="./images/close.svg" alt="" /> Closed boards
+          </h3>
+          <div class="list-boards">
+            <div class="list-boards__card">Codeable Postulation</div>
+            <div class="list-boards__card">Odin Project</div>
+          </div>
+        </div>
+        <div>
+      </section>
+      <section id="myProfile" class="sections">
+        my profile
+      </section>
+      <section id="logout" class="sections">
+        log out
+      </section>
+    </main>
+    <script src="./js/menuBoards.js"></script>
+  </body>
+</html>
