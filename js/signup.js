@@ -4,11 +4,13 @@ signupForm.addEventListener('submit', () => {
   event.preventDefault();
 
   const user = {
-    username: document.querySelector('#username').value,
-    password: document.querySelector('#password').value,
-    email: document.querySelector('#email').value,
-    firstName: document.querySelector('#first-name').value,
-    lastName: document.querySelector('#last-name').value,
+    user: {
+      username: document.querySelector('#username').value,
+      password: document.querySelector('#password').value,
+      email: document.querySelector('#email').value,
+      firstName: document.querySelector('#first-name').value,
+      lastName: document.querySelector('#last-name').value,
+    },
   };
 
   signup('http://localhost:3000/users', user);
@@ -24,9 +26,8 @@ async function signup(url, user) {
   };
 
   const response = await fetch(url, options).then((res) => res.json());
-  console.log(response);
 
-  if (response.id === undefined) {
+  if (!response.id) {
     console.log(response);
   } else {
     localStorage.setItem('id', response.id);
