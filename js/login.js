@@ -28,6 +28,7 @@ async function login(url, credentials) {
   if (response.errors) {
     console.log(response.errors);
   } else {
+    localStorage.setItem('id', response.id);
     localStorage.setItem('token', response.token);
     window.location.replace('boards.html');
   }
