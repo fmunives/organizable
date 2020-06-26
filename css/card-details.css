@@ -105,6 +105,7 @@
 }
 
 .form-text {
+  height: 25px;
   border: 1px solid #0079bf;
   box-sizing: border-box;
   border-radius: 3px;
@@ -112,5 +113,66 @@
   font-size: 12px;
   line-height: 20px;
   color: #5e6c84;
-  padding: 5px;
+  padding: 1px 5px;
+  font-family: inherit;
+}
+
+.checklist-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkbox {
+  height: 18px;
+  width: 18px;
+  background: #fafbfc;
+  border: 1px solid #d8d8d8;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 0px #0079bf;
+  border-radius: 2px;
+}
+
+.checklist-item {
+  display: flex;
+  margin-bottom: 9px;
+}
+
+.checkbox-text {
+  margin: 0 5px;
+}
+
+.sidebar-labels-item {
+  display: flex;
+  margin: 5px;
+}
+
+.form-add-checklist {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-item-color {
+  width: 80px;
+  height: 24px;
+  background: #61bd4f;
+  border-radius: 3px;
+}
+
+.set-color[data-color="#61BD4F"] {
+  background: #61bd4f;
+}
+.set-color[data-color="#EB5A46"] {
+  background: #eb5a46;
+}
+.set-color[data-color="#F2D600"] {
+  background: #f2d600;
+}
+.set-color[data-color="#C377E0"] {
+  background: #c377e0;
+}
+.set-color[data-color="#FF9F1A"] {
+  background: #ff9f1a;
+}
+.set-color[data-color="#0079BF"] {
+  background: #0079bf;
 }

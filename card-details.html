@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/helpers.css" />
     <link rel="stylesheet" href="css/card-details.css" />
     <title>Organizable</title>
   </head>
@@ -25,7 +25,7 @@
               <p class="card-detail__description">
                 This is the description of the card. It could be long or short.
               </p>
-              <form class="form-edit-description hidden">
+              <form class="form-edit-description">
                 <textarea name="form-text-description" class="form-text">
 Add your description here</textarea
                 >
@@ -59,12 +59,21 @@ Add your description here</textarea
                     <p class="checkbox-text">Create HTML and CSS</p>
                   </div>
                 </div>
-                <input
-                  type="submit"
-                  name="add-checklist-item"
-                  class="main-button"
-                  value="Add item"
-                />
+                <form>
+                  <input
+                    type="text"
+                    name="add-checkbox-text"
+                    id="add-checkbox-text"
+                    class="form-text"
+                    placeholder="Add check item..."
+                  />
+                  <input
+                    type="submit"
+                    name="add-checklist-item"
+                    class="main-button"
+                    value="Add item"
+                  />
+                </form>
               </div>
             </div>
           </div>
@@ -73,27 +82,45 @@ Add your description here</textarea
               <p class="sidebar-titles">LABELS</p>
               <div class="sidebar-labels-items">
                 <div class="sidebar-labels-item">
-                  <div class="label-item-color"></div>
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#61BD4F"
+                  ></div>
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
-                  <div class="label-item-color"></div>
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#EB5A46"
+                  ></div>
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
-                  <div class="label-item-color"></div>
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#F2D600"
+                  ></div>
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
-                  <div class="label-item-color"></div>
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#C377E0"
+                  ></div>
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
-                  <div class="label-item-color"></div>
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#FF9F1A"
+                  ></div>
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
-                  <div class="label-item-color"></div>
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#0079BF"
+                  ></div>
                   <img src="images/edit-label-text.svg" />
                 </div>
               </div>
