@@ -15,14 +15,7 @@ async function getBoards(token) {
 
   return fetch(url, options)
     .then((res) => res.json())
-    .then(
-      (data) => {
-        data;
-      },
-      (error) => {
-        error.message;
-      }
-    );
+    .then((data) => data);
 }
 
 function getBoardId(id) {
@@ -92,138 +85,66 @@ function deleteBoard(id) {
   fetch(fetchurl, options).then((res) => console.log(res));
 }
 
-// Boards
-// Creation
-// Functions
+/// CREATE BOARDS FROM API ///
 
-const btnCreateBoard = document.getElementById('create-new-board');
-const modalBoard = document.getElementById('modal-create-board');
-const closeModal = document.getElementById('close-modal');
-const allColors = document.querySelectorAll('.set-color');
-const bgBoardTitle = document.querySelector('.create-board__title');
-const allBoardsCards = document.querySelectorAll('.list-boards__card');
-const myBoards = document.querySelectorAll('#myBoards');
+const starBoards = document.querySelectorAll('.list-boards')[0];
+const normalBoards = document.querySelectorAll('.list-boards')[1];
+const closeBoards = document.querySelectorAll('.list-boards')[2];
 
-// console.log(allBoardsCards);
-
-allColors.forEach((colorSelected) => {
-  colorSelected.onclick = () => (bgBoardTitle.style.background = colorSelected.dataset.color);
-});
-
-allBoardsCards.forEach((cardBoard) => {
-  cardBoard.onclick = () => (window.location.href = 'board.html');
-});
-
-btnCreateBoard.onclick = () => showModalCreateBoard(modalBoard);
-closeModal.onclick = () => hideModalCreateBoard(modalBoard);
-
-document.addEventListener('keyup', function (event) {
-  let codeScape = 27;
-  if (event.keyCode === codeScape) hideModalCreateBoard(modalBoard);
-});
-
-function showModalCreateBoard(modalBoard) {
-  modalBoard.classList.remove('hide');
-}
-
-function hideModalCreateBoard(modalBoard) {
-  modalBoard.classList.add('hide');
-  console.log(event.key);
-}
+const colors = {
+  blue: '#0079BF',
+  orange: '#D29034',
+  green: '#519839',
+  red: '#B04632',
+  purple: '#89609E',
+  pink: '#CD5A90',
+  lime: '#4BBF6B',
+  sky: '#0AAECB',
+  gray: '#838C90',
+};
 
 function showSingleBoard(board) {
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add = 'list-boards__card';
+  const parentDiv = (() => {
+    if (!board.closed) {
+      return board.starred ? starBoards : normalBoards;
+    }
+    return closeBoards;
+  })();
 
-  const title = document.createElement('h3');
-  title.innerText = board.name;
+  const mainDiv = document.createElement('div');
+  mainDiv.className = 'list-boards__card';
+  mainDiv.innerText = board.name;
+  mainDiv.style.backgroundColor = colors[`${board.color}`];
 
   const innerDiv = document.createElement('div');
-  innerDiv.classList.add = 'list-boards__options';
+  innerDiv.className = 'list-boards__options';
+  mainDiv.appendChild(innerDiv);
 
   const closeButton = document.createElement('button');
-  closeButton.classList.add = 'list-boards__option';
+  closeButton.className = 'list-boards__option';
+  innerDiv.appendChild(closeButton);
 
   const closeImg = document.createElement('img');
   closeImg.setAttribute('src', './images/small-close.svg');
   closeImg.setAttribute('alt', 'Close this board');
-
   closeButton.appendChild(closeImg);
 
   const starButton = document.createElement('button');
-  starButton.classList.add = 'list-boards__option';
-
-  starImg.setAttribute('src', './images/small-start-white.svg');
-  starImg.setAttribute('alt', 'Star this board');
-
-  starButton.appendChild(starImg);
-
-  innerDiv.appendChild(closeButton);
+  starButton.className = 'list-boards__option';
   innerDiv.appendChild(starButton);
 
-  mainDiv.appendChild(title);
-  mainDiv.appendChild(innerDiv);
+  const starImg = document.createElement('img');
+  starImg.setAttribute('src', './images/small-start-white.svg');
+  starImg.setAttribute('alt', 'Star this board');
+  starButton.appendChild(starImg);
+
+  parentDiv.appendChild(mainDiv);
 }
 
 function showActiveBoards() {
-  const boards = await getBoards(token);
-
-  boards.forEach((board) => showSingleBoard(board));
+  getBoards(token).then((response) => {
+    Object.values(response).forEach((board) => showSingleBoard(board));
+  });
 }
 
 showActiveBoards();
-
-// Boards
-// Menu
-// Functions
-
-myBoards = document.getElementById('myBoards');
-closedBoards = document.getElementById('closedBoards');
-myProfile = document.getElementById('myProfile');
-logout = document.getElementById('logout');
-
-allButtons = document.querySelectorAll('.option');
-allSections = document.querySelectorAll('.sections');
-
-allButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    removeActiveOthersButtons();
-    event.target.classList.add('active');
-    const idButton = event.target.id;
-    switchButton(idButton);
-  });
-});
-
-function showCurrentlySection(section) {
-  section.classList.add('section-active');
-}
-
-function hideOthersSections() {
-  allSections.forEach((section) => section.classList.remove('section-active'));
-}
-
-function removeActiveOthersButtons() {
-  allButtons.forEach((button) => button.classList.remove('active'));
-}
-
-function switchButton(button) {
-  switch (button) {
-    case 'btnMyBoards':
-      hideOthersSections();
-      showCurrentlySection(myBoards);
-      break;
-    case 'btnClosedBoard':
-      hideOthersSections();
-      showCurrentlySection(closedBoards);
-      break;
-    case 'btnProfile':
-      hideOthersSections();
-      showCurrentlySection(myProfile);
-      break;
-    default:
-      window.location.href = 'login.html';
-      // hideOthersSections();
-      // showCurrentlySection(logout);
-      break;
-  }
-}
