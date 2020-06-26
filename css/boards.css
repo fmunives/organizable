@@ -95,9 +95,8 @@
   outline: none;
 }
 
-.list-boards__star {
+.list-boards__option {
   border: none;
-
   background: none;
   cursor: pointer;
 }
