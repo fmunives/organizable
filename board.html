@@ -26,13 +26,13 @@
         <button class="button-none">
           <i class="far fa-star board__icon"></i>
         </button>
-        <button class="button-none">
+        <button class="button-none" id="close-board">
           <i class="far fa-window-close board__icon" style="color: #fff;"></i>
         </button>
       </div>
 
       <section class="board">
-        <div class="board__list">
+        <!-- <div class="board__list">
           <h1 class="list__title">
             To Do
             <button class="button-none">
@@ -67,9 +67,9 @@
             <button class="list__submit" type="submit">Add Card</button>
             <i class="fas fa-times"></i>
           </form>
-        </div>
+        </div> -->
 
-        <div class="board__list">
+        <!-- <div class="board__list">
           <h1 class="list__title">
             Doing
             <button class="button-none">
@@ -80,9 +80,9 @@
             <i class="fas fa-plus"></i>
             Add another card
           </div>
-        </div>
+        </div> -->
 
-        <div class="board__list">
+        <!-- <div class="board__list">
           <form method="post" class="board__new-list">
             <input
               type="text"
@@ -93,11 +93,11 @@
             <button class="board__submit" type="submit">Add List</button>
             <i class="fas fa-times"></i>
           </form>
-        </div>
+        </div> -->
         <div class="board__list">
           <div class="list__title--greyed btn-create-list">
             <i class="fas fa-plus"></i>
-            Add another list
+            Add a new list
           </div>
 
           <!-- <form method="post" class="board__new-list">
@@ -114,7 +114,7 @@
       </section>
     </main>
   </body>
-  <template id="template-create-list">
+  <template id="template-form-list">
     <form method="post" class="board__new-list">
       <input
         type="text"
@@ -122,9 +122,33 @@
         class="board__input"
         placeholder="Enter list title"
       />
-      <button class="board__submit" type="submit">Add List</button>
-      <i class="fas fa-times"></i>
+      <input class="board__submit" type="submit" value="Add List" />
+      <button type="button" class="board__cancel button-none">
+        <i class="fas fa-times"></i>
+      </button>
     </form>
+  </template>
+  <template id="template-header-list">
+    <div class="flex justify-between">
+      <h1 class="list__title">
+        Doing
+      </h1>
+      <button class="button-none">
+        <img src="./images/close-gray.svg" alt="" />
+      </button>
+    </div>
+    <div class="list__title--greyed">
+      <i class="fas fa-plus"></i>
+      Add another card
+    </div>
+  </template>
+  <template id="template-list">
+    <div class="board__list">
+      <div class="list__title--greyed btn-create-list">
+        <i class="fas fa-plus"></i>
+        Add another list
+      </div>
+    </div>
   </template>
   <script src="./js/createCardList.js"></script>
 </html>
