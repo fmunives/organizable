@@ -1,9 +1,19 @@
+//section to create a list
+
 templateFormList = document.getElementById("template-form-list");
 templateHeaderList = document.getElementById("template-header-list");
 templateList = document.getElementById("template-list");
 btnCreateList = document.querySelectorAll(".btn-create-list");
 allList = document.querySelectorAll(".board__list");
 btnCloseBoard = document.getElementById("close-board");
+
+// section to create a card
+
+templateFormCard = document.getElementById("template-form-card");
+templateCard = document.getElementById("template-card");
+// console.log(templateCard);
+
+// the functions for all
 
 btnCloseBoard.onclick = () => (window.location.href = "boards.html");
 // console.log(allList);
@@ -16,7 +26,7 @@ btnCreateList.forEach((btn) => {
 });
 
 function createForm(event) {
-  const newForm = document.importNode(templateFormList.content, true); // se crea la copia de form
+  const newForm = cloneTemplate(templateFormList); // se crea la copia de form
   event.target.after(newForm); //se inserta después del boton
   event.target.classList.add("hide"); // se oculta el boton
 
@@ -58,14 +68,18 @@ function showBtnList(button) {
 }
 
 function createHeaderList() {
-  const newHeaderList = document.importNode(templateHeaderList.content, true);
+  const newHeaderList = cloneTemplate(templateHeaderList);
+  const btnCreateFormCard = newHeaderList.lastElementChild;
+  btnCreateFormCard.onclick = (event) =>
+    createFormCard(templateFormCard, event);
   const btnDeleteList = newHeaderList.firstElementChild.lastElementChild;
   return [newHeaderList, btnDeleteList];
 }
 
 function createList() {
-  const newList = document.importNode(templateList.content, true);
+  const newList = cloneTemplate(templateList);
   const newBtn = newList.firstElementChild.firstElementChild;
+
   newBtn.onclick = () => createForm(event); //se añade un evento para crear un new form
   // TODO send new list card to db
   return newList;
@@ -74,4 +88,99 @@ function createList() {
 function deleteList(list) {
   list.remove();
   //TODO delete list from the db
+}
+
+function createFormCard(template, event) {
+  const formTemplateCard = cloneTemplate(template);
+  const currentBtnCard = event.target;
+  // const btnCreateCard = formTemplateCard.firstElementChild.querySelector(
+  //   ".list__submit"
+  // );
+
+  currentBtnCard.before(formTemplateCard);
+  hideItem(currentBtnCard);
+
+  getAllFormCards();
+
+  // console.log("form new", formCardCreated);
+  // return formCard;
+}
+
+function getAllFormCards() {
+  formsCardCreated = document.querySelectorAll(".list__new-task");
+  console.log(formsCardCreated);
+  // let btnShowDetailsCard = "";
+  formsCardCreated.forEach((formCard) => {
+    formCard.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const titleCard = formCard.firstElementChild.value;
+      createCard(templateCard, formCard, titleCard);
+      // btnShowDetailsCard.onclick = (event) => showCardDetails(event);
+      // console.log("btn deta 2, ", this.btnShowDetailsCard);
+    });
+
+    // console.log("button details", btnShowDetailsCard);
+
+    // btnShowDetailsCard.onclick = (event) => showCardDetails(event);
+
+    const btnDeleteForm = formCard.lastElementChild;
+    const btnCreateCard = formCard.parentNode.lastElementChild;
+
+    btnDeleteForm.onclick = () => {
+      showItem(btnCreateCard);
+      formCard.remove();
+    };
+  });
+}
+
+function createCard(template, formCard, title) {
+  const newCard = cloneTemplate(template);
+  const inputTitle = newCard.firstElementChild.lastElementChild;
+  const btnSeeDetails = newCard.firstElementChild;
+
+  btnSeeDetails.onclick = () => showCardDetails();
+  // TODO enlazar con el detalle del card
+
+  inputTitle.textContent = title;
+  formCard.before(newCard);
+  return btnSeeDetails;
+}
+
+function showCardDetails() {
+  modalCardDetails = document.getElementById("modal-edit-card");
+  closeModal = document.getElementById("close-modal");
+
+  showModalEditCard(modalCardDetails);
+
+  closeModal.onclick = () => hideModalEditCard(modalCardDetails);
+
+  document.addEventListener("keyup", function (event) {
+    let codeScape = 27;
+    if (event.keyCode === codeScape) hideModalEditCard(modalCardDetails);
+  });
+
+  function showModalEditCard(modal) {
+    modal.classList.remove("hide");
+  }
+
+  function hideModalEditCard(modalBoard) {
+    modalBoard.classList.add("hide");
+  }
+}
+
+function hideItem(item) {
+  item.classList.add("hide");
+}
+
+function showItem(item) {
+  item.classList.remove("hide");
+}
+
+// function insertBefore(currentItem, newItem) {
+//   currentItem.before(newItem);
+// }
+
+function cloneTemplate(item) {
+  const newItem = document.importNode(item.content, true);
+  return newItem;
 }

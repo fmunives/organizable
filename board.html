@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/board.css" />
     <link rel="stylesheet" href="css/sign-up.css" />
     <link rel="stylesheet" href="css/helpers.css" />
+    <link rel="stylesheet" href="css/card-details.css" />
     <title>Board</title>
   </head>
   <body style="background-color: darkcyan;">
@@ -113,6 +114,170 @@
         </div>
       </section>
     </main>
+    <!-- modal section -->
+    <section id="modal-edit-card" class="card-detail__modal hide">
+      <div class="card-detail__form">
+        <div class="card-detail__header">
+          <div>
+            <p class="card-detail-title">Card Title</p>
+            <input
+              type="text"
+              name="card-title"
+              id="card-title"
+              class="form-text"
+              placeholder="Card title"
+            />
+          </div>
+
+          <button class="card-detail__close" id="close-modal">
+            <img src="./images/close-edit-card.svg" alt="close" />
+          </button>
+        </div>
+        <div class="card-detail__body">
+          <div class="card-detail__main">
+            <div class="main-labels">
+              <p class="main-titles">LABELS</p>
+              <div class="show-labels"></div>
+            </div>
+            <div class="main-description">
+              <p class="main-titles">DESCRIPTION</p>
+              <p class="card-detail__description">
+                This is the description of the card. It could be long or short.
+              </p>
+              <form class="form-edit-description">
+                <textarea name="form-text-description" class="form-text">
+Add your description here</textarea
+                >
+                <input
+                  type="submit"
+                  name="edit-description"
+                  class="main-button edit-description-button"
+                  value="Edit"
+                />
+              </form>
+            </div>
+            <div class="main-checklists">
+              <p class="main-titles">CHECKLIST</p>
+              <div class="checklist">
+                <div class="checklist-header">
+                  <p class="checklist-title">Checklist title</p>
+                  <input
+                    type="submit"
+                    name="delete-checklist"
+                    class="main-button"
+                    value="Delete"
+                  />
+                </div>
+                <div class="checklist-items">
+                  <div class="checklist-item">
+                    <div class="checkbox checked"></div>
+                    <p class="checkbox-text">Make fetch request</p>
+                  </div>
+                  <div class="checklist-item">
+                    <div class="checkbox uncheked"></div>
+                    <p class="checkbox-text">Create HTML and CSS</p>
+                  </div>
+                </div>
+                <form>
+                  <input
+                    type="text"
+                    name="add-checkbox-text"
+                    id="add-checkbox-text"
+                    class="form-text"
+                    placeholder="Add check item..."
+                  />
+                  <input
+                    type="submit"
+                    name="add-checklist-item"
+                    class="main-button"
+                    value="Add item"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card-detail__sidebar">
+            <div class="sidebar-labels">
+              <p class="sidebar-titles">LABELS</p>
+              <div class="sidebar-labels-items">
+                <div class="sidebar-labels-item">
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#61BD4F"
+                  ></div>
+                  <img src="images/edit-label-text.svg" />
+                </div>
+                <div class="sidebar-labels-item">
+                  <div class="label-item-color set-color" data-color="#EB5A46">
+                    <span class="label-item-text">Urgent</span>
+                  </div>
+                  <img src="images/edit-label-text.svg" />
+                </div>
+                <div class="sidebar-labels-item">
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#F2D600"
+                  ></div>
+                  <img src="images/edit-label-text.svg" />
+                </div>
+                <div class="sidebar-labels-item">
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#C377E0"
+                  ></div>
+                  <img src="images/edit-label-text.svg" />
+                </div>
+                <div class="sidebar-labels-item">
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#FF9F1A"
+                  ></div>
+                  <img src="images/edit-label-text.svg" />
+                </div>
+                <div class="sidebar-labels-item">
+                  <div
+                    class="label-item-color set-color"
+                    data-color="#0079BF"
+                  ></div>
+                  <img src="images/edit-label-text.svg" />
+                </div>
+              </div>
+              <input
+                type="submit"
+                name="add-new-label"
+                class="sidebar-button-new-label"
+                value="Create new label"
+              />
+              <div class="flex"></div>
+            </div>
+            <div class="sidebar-checklists">
+              <p class="sidebar-titles">CHECKLIST</p>
+              <form class="form-add-checklist">
+                <input
+                  type="text"
+                  name="checklist-title"
+                  id="checklist-title"
+                  class="form-text"
+                  placeholder="Checklist..."
+                />
+                <input
+                  type="submit"
+                  name="add-new-checklist"
+                  class="sidebar-button-checklist"
+                  value="Add"
+                />
+              </form>
+            </div>
+            <input
+              type="submit"
+              name="delete-card"
+              class="sidebar-button-delete-card"
+              value="Delete Card"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
   <template id="template-form-list">
     <form method="post" class="board__new-list">
@@ -149,6 +314,27 @@
         Add another list
       </div>
     </div>
+  </template>
+  <template id="template-form-card">
+    <form method="post" class="list__new-task">
+      <input
+        type="text"
+        name="new-task"
+        class="list__input"
+        placeholder="Create a new task"
+      />
+      <input class="list__submit" type="submit" value="Add Card" />
+      <button class="button-none"><i class="fas fa-times"></i></button>
+    </form>
+  </template>
+  <template id="template-card">
+    <article class="task">
+      <!-- <div class="task__tags">
+        <div class="task__colors task__colors--blue"></div>
+        <div class="task__colors task__colors--red"></div>
+      </div> -->
+      <p class="task__description">Refactor functions</p>
+    </article>
   </template>
   <script src="./js/createCardList.js"></script>
 </html>
