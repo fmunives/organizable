@@ -8,11 +8,26 @@
     <title>Organizable</title>
   </head>
   <body>
-    <section>
-      <div class="card-detail__modal">
+    <div id="edit-card" style="background: grey; width: 100px; height: 100px;">
+      CARD
+    </div>
+    <section id="modal-edit-card" class="card-detail__modal hide">
+      <div class="card-detail__form">
         <div class="card-detail__header">
-          <p class="card-detail-title">Card Title</p>
-          <img src="images/close-edit-card.svg" />
+          <div>
+            <p class="card-detail-title">Card Title</p>
+            <input
+              type="text"
+              name="card-title"
+              id="card-title"
+              class="form-text"
+              placeholder="Card title"
+            />
+          </div>
+
+          <button class="card-detail__close" id="close-modal">
+            <img src="./images/close-edit-card.svg" alt="close" />
+          </button>
         </div>
         <div class="card-detail__body">
           <div class="card-detail__main">
@@ -89,10 +104,9 @@ Add your description here</textarea
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
-                  <div
-                    class="label-item-color set-color"
-                    data-color="#EB5A46"
-                  ></div>
+                  <div class="label-item-color set-color" data-color="#EB5A46">
+                    <span class="label-item-text">Urgent</span>
+                  </div>
                   <img src="images/edit-label-text.svg" />
                 </div>
                 <div class="sidebar-labels-item">
@@ -130,6 +144,7 @@ Add your description here</textarea
                 class="sidebar-button-new-label"
                 value="Create new label"
               />
+              <div class="flex"></div>
             </div>
             <div class="sidebar-checklists">
               <p class="sidebar-titles">CHECKLIST</p>
@@ -159,5 +174,6 @@ Add your description here</textarea
         </div>
       </div>
     </section>
+    <script src="./js/editCard.js"></script>
   </body>
 </html>

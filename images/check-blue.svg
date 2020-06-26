@@ -3,7 +3,9 @@
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 12 12" style="enable-background:new 0 0 12 12;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#FFFFFF;}
+	.st0{fill:#0079BF;}
+	.st1{fill:none;stroke:#FFFFFF;}
 </style>
-<path class="st0" d="M1.7,6.4L5,9.6l5.3-7.8"/>
+<rect x="0" y="0" class="st0" width="12" height="12"/>
+<path class="st1" d="M0.8,6.5l4,4L11.2,1"/>
 </svg>
