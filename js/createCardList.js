@@ -109,12 +109,19 @@ function createFormCard(template, event) {
 function getAllFormCards() {
   formsCardCreated = document.querySelectorAll(".list__new-task");
   console.log(formsCardCreated);
+  // let btnShowDetailsCard = "";
   formsCardCreated.forEach((formCard) => {
     formCard.addEventListener("submit", (event) => {
       event.preventDefault();
       const titleCard = formCard.firstElementChild.value;
       createCard(templateCard, formCard, titleCard);
+      // btnShowDetailsCard.onclick = (event) => showCardDetails(event);
+      // console.log("btn deta 2, ", this.btnShowDetailsCard);
     });
+
+    // console.log("button details", btnShowDetailsCard);
+
+    // btnShowDetailsCard.onclick = (event) => showCardDetails(event);
 
     const btnDeleteForm = formCard.lastElementChild;
     const btnCreateCard = formCard.parentNode.lastElementChild;
@@ -131,12 +138,34 @@ function createCard(template, formCard, title) {
   const inputTitle = newCard.firstElementChild.lastElementChild;
   const btnSeeDetails = newCard.firstElementChild;
 
-  // btnSeeDetails.onclick = () => window.location.href = ""
+  btnSeeDetails.onclick = () => showCardDetails();
   // TODO enlazar con el detalle del card
 
   inputTitle.textContent = title;
   formCard.before(newCard);
-  return newCard;
+  return btnSeeDetails;
+}
+
+function showCardDetails() {
+  modalCardDetails = document.getElementById("modal-edit-card");
+  closeModal = document.getElementById("close-modal");
+
+  showModalEditCard(modalCardDetails);
+
+  closeModal.onclick = () => hideModalEditCard(modalCardDetails);
+
+  document.addEventListener("keyup", function (event) {
+    let codeScape = 27;
+    if (event.keyCode === codeScape) hideModalEditCard(modalCardDetails);
+  });
+
+  function showModalEditCard(modal) {
+    modal.classList.remove("hide");
+  }
+
+  function hideModalEditCard(modalBoard) {
+    modalBoard.classList.add("hide");
+  }
 }
 
 function hideItem(item) {
