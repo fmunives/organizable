@@ -43,6 +43,7 @@ function switchButton(button) {
       getCurrentUser();
       break;
     default:
+      logOut();
       window.location.href = "login.html";
       // hideOthersSections();
       // showCurrentlySection(logout);
@@ -81,4 +82,9 @@ async function getCurrentUser() {
   textEmail.value = email;
   textFirstName.value = firstName;
   textLastName.value = lastName;
+}
+
+function logOut() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("id");
 }
