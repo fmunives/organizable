@@ -150,5 +150,26 @@
       </div>
     </div>
   </template>
+  <template id="template-form-card">
+    <form method="post" class="list__new-task">
+      <input
+        type="text"
+        name="new-task"
+        class="list__input"
+        placeholder="Create a new task"
+      />
+      <input class="list__submit" type="submit" value="Add Card" />
+      <button class="button-none"><i class="fas fa-times"></i></button>
+    </form>
+  </template>
+  <template id="template-card">
+    <article class="task">
+      <!-- <div class="task__tags">
+        <div class="task__colors task__colors--blue"></div>
+        <div class="task__colors task__colors--red"></div>
+      </div> -->
+      <p class="task__description">Refactor functions</p>
+    </article>
+  </template>
   <script src="./js/createCardList.js"></script>
 </html>
