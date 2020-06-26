@@ -40,6 +40,7 @@ function switchButton(button) {
     case "btnProfile":
       hideOthersSections();
       showCurrentlySection(myProfile);
+      getCurrentUser();
       break;
     default:
       window.location.href = "login.html";
@@ -47,4 +48,37 @@ function switchButton(button) {
       // showCurrentlySection(logout);
       break;
   }
+}
+
+async function getCurrentUser() {
+  const currentToken = localStorage.getItem("token");
+  const currentUserId = localStorage.getItem("id");
+
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Token token="${currentToken}"`,
+    },
+  };
+
+  const response = await fetch(
+    `http://localhost:3000/users/${currentUserId}`,
+    options
+  );
+  const currentUserData = await response.json();
+
+  const { username } = currentUserData;
+  const { email } = currentUserData;
+  const { firstName } = currentUserData;
+  const { lastName } = currentUserData;
+
+  textUsername = document.getElementById("username");
+  textEmail = document.getElementById("email");
+  textFirstName = document.getElementById("first-name");
+  textLastName = document.getElementById("last-name");
+
+  textUsername.value = username;
+  textEmail.value = email;
+  textFirstName.value = firstName;
+  textLastName.value = lastName;
 }
