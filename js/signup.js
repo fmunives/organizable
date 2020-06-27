@@ -8,8 +8,13 @@ signupForm.addEventListener("submit", () => {
       username: document.querySelector("#username").value,
       password: document.querySelector("#password").value,
       email: document.querySelector("#email").value,
+<<<<<<< HEAD
+      first_name: document.querySelector("#first-name").value,
+      last_name: document.querySelector("#last-name").value,
+=======
       firstName: document.querySelector("#first-name").value,
       lastName: document.querySelector("#last-name").value,
+>>>>>>> master
     },
   };
 
