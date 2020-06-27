@@ -1,14 +1,14 @@
 // Boards
 // API
 // Functions
-const token = `Token token="${localStorage.getItem('token')}"`;
-const url = 'http://localhost:3000/boards';
+const token = `Token token="${localStorage.getItem("token")}"`;
+const url = "http://localhost:3000/boards";
 
 async function getBoards(token) {
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
   };
@@ -18,12 +18,12 @@ async function getBoards(token) {
     .then((data) => data);
 }
 
-function getBoardId(id) {
+async function getBoardId(id) {
   const fetchurl = `${url}/${id}`;
   const options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
   };
@@ -39,27 +39,29 @@ function getBoardId(id) {
     });
 }
 
-function createBoard(board) {
+async function createBoard(board) {
   const options = {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(board),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
   };
 
-  fetch(url, options).then((res) => console.log(res));
+  fetch(url, options)
+    .then((rpta) => rpta.json())
+    .then((data) => console.log("data", data)); //devuelve la data creada
 }
 
-function updateBoard(id, data) {
+async function updateBoard(id, data) {
   const fetchurl = `${url}/${id}`;
 
   const options = {
-    method: 'PATCH',
+    method: "PATCH",
     body: JSON.stringify(data),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
   };
@@ -68,16 +70,16 @@ function updateBoard(id, data) {
 }
 
 const data = {
-  name: 'Organizable Updated!!',
+  name: "Organizable Updated!!",
 };
 
-function deleteBoard(id) {
+async function deleteBoard(id) {
   const fetchurl = `${url}/${id}`;
 
   const options = {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `${token}`,
     },
   };
@@ -87,20 +89,20 @@ function deleteBoard(id) {
 
 /// CREATE BOARDS FROM API ///
 
-const starBoards = document.querySelectorAll('.list-boards')[0];
-const normalBoards = document.querySelectorAll('.list-boards')[1];
-const closeBoards = document.querySelectorAll('.list-boards')[2];
+const starBoards = document.querySelectorAll(".list-boards")[0];
+const normalBoards = document.querySelectorAll(".list-boards")[1];
+const closeBoards = document.querySelectorAll(".list-boards")[2];
 
 const colors = {
-  blue: '#0079BF',
-  orange: '#D29034',
-  green: '#519839',
-  red: '#B04632',
-  purple: '#89609E',
-  pink: '#CD5A90',
-  lime: '#4BBF6B',
-  sky: '#0AAECB',
-  gray: '#838C90',
+  blue: "#0079BF",
+  orange: "#D29034",
+  green: "#519839",
+  red: "#B04632",
+  purple: "#89609E",
+  pink: "#CD5A90",
+  lime: "#4BBF6B",
+  sky: "#0AAECB",
+  gray: "#838C90",
 };
 
 function showSingleBoard(board) {
@@ -111,31 +113,36 @@ function showSingleBoard(board) {
     return closeBoards;
   })();
 
-  const mainDiv = document.createElement('div');
-  mainDiv.className = 'list-boards__card';
+  const mainDiv = document.createElement("div");
+  mainDiv.className = "list-boards__card";
   mainDiv.innerText = board.name;
+  mainDiv.id = board.id; // añadiendo id a cada board
+  mainDiv.onclick = () => {
+    window.location.href = "board.html";
+    localStorage.setItem("idBoard", board.id);
+  }; //redirecciona al detalle del board
   mainDiv.style.backgroundColor = colors[`${board.color}`];
 
-  const innerDiv = document.createElement('div');
-  innerDiv.className = 'list-boards__options';
+  const innerDiv = document.createElement("div");
+  innerDiv.className = "list-boards__options";
   mainDiv.appendChild(innerDiv);
 
-  const closeButton = document.createElement('button');
-  closeButton.className = 'list-boards__option';
+  const closeButton = document.createElement("button");
+  closeButton.className = "list-boards__option";
   innerDiv.appendChild(closeButton);
 
-  const closeImg = document.createElement('img');
-  closeImg.setAttribute('src', './images/small-close.svg');
-  closeImg.setAttribute('alt', 'Close this board');
+  const closeImg = document.createElement("img");
+  closeImg.setAttribute("src", "./images/small-close.svg");
+  closeImg.setAttribute("alt", "Close this board");
   closeButton.appendChild(closeImg);
 
-  const starButton = document.createElement('button');
-  starButton.className = 'list-boards__option';
+  const starButton = document.createElement("button");
+  starButton.className = "list-boards__option";
   innerDiv.appendChild(starButton);
 
-  const starImg = document.createElement('img');
-  starImg.setAttribute('src', './images/small-start-white.svg');
-  starImg.setAttribute('alt', 'Star this board');
+  const starImg = document.createElement("img");
+  starImg.setAttribute("src", "./images/small-start-white.svg");
+  starImg.setAttribute("alt", "Star this board");
   starButton.appendChild(starImg);
 
   parentDiv.appendChild(mainDiv);
@@ -148,3 +155,28 @@ function showActiveBoards() {
 }
 
 showActiveBoards();
+
+function newBoard() {
+  event.preventDefault();
+
+  const color = (() => {
+    const value = document.querySelector('.create-board__title').getAttribute('data-color');
+    return Object.keys(colors).find((key) => colors[key] === value);
+  })();
+
+  const board = {
+    name: document.querySelector(".create-board__input").value,
+    closed: false,
+    color: color,
+    starred: false,
+  };
+  createBoard(board);
+  showSingleBoard(board);
+
+  document.querySelector('.create-board__title').style.backgroundColor = colors.blue;
+  document.querySelector('.create-board__title').setAttribute('data-color', colors.blue);
+  document.querySelector('.create-board__input').value = '';
+  document.querySelector('#modal-create-board').classList.toggle('hide');
+}
+
+document.querySelector("#createBoardBtn").addEventListener("click", newBoard);
