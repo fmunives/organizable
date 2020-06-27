@@ -184,3 +184,54 @@ function cloneTemplate(item) {
   const newItem = document.importNode(item.content, true);
   return newItem;
 }
+
+// info de api
+
+function getBoardDetail(id) {
+  const url = `http://localhost:3000/boards/${id}`;
+  const token = localStorage.getItem("token");
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Token token="${token}"`,
+    },
+  };
+  return fetch(url, options)
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((err) => err);
+}
+
+async function showBoardDetail() {
+  const idBoard = localStorage.getItem("idBoard");
+  const boardInfo = await getBoardDetail(idBoard);
+  const title = document.querySelector(".board__title");
+  const bg = document.querySelector("body");
+  bg.style.background = boardInfo.color;
+  title.textContent = boardInfo.name;
+
+  let index = 0;
+  const arrList = boardInfo.lists;
+  arrList.forEach((list) => {
+    const currentList = document.querySelectorAll(".board__list")[index];
+    const currentForm = currentList.firstElementChild;
+    const [header, btnDelete] = createHeaderList();
+
+    btnDelete.onclick = () => deleteList(currentList);
+    const titleList = header.firstElementChild.firstElementChild;
+    titleList.textContent = list.name;
+    currentList.append(header);
+
+    const arrCards = list.cards;
+    const btnAddCard = document.querySelectorAll(".add-card")[index];
+    arrCards.forEach((card) => {
+      const name = card.name;
+      createCard(templateCard, btnAddCard, name);
+    });
+    index++;
+    currentList.after(createList());
+    currentForm.remove();
+  });
+}
+
+showBoardDetail();
