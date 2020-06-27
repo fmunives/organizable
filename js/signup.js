@@ -1,27 +1,27 @@
-const signupForm = document.querySelector('.sign-up__form');
+const signupForm = document.querySelector(".sign-up__form");
 
-signupForm.addEventListener('submit', () => {
+signupForm.addEventListener("submit", () => {
   event.preventDefault();
 
   const user = {
     user: {
-      username: document.querySelector('#username').value,
-      password: document.querySelector('#password').value,
-      email: document.querySelector('#email').value,
-      firstName: document.querySelector('#first-name').value,
-      lastName: document.querySelector('#last-name').value,
+      username: document.querySelector("#username").value,
+      password: document.querySelector("#password").value,
+      email: document.querySelector("#email").value,
+      firstName: document.querySelector("#first-name").value,
+      lastName: document.querySelector("#last-name").value,
     },
   };
 
-  signup('http://localhost:3000/users', user);
+  signup("http://localhost:3000/users", user);
 });
 
 async function signup(url, user) {
   const options = {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(user),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -30,8 +30,8 @@ async function signup(url, user) {
   if (!response.id) {
     console.log(response);
   } else {
-    localStorage.setItem('id', response.id);
-    localStorage.setItem('token', response.token);
-    window.location.replace('boards.html');
+    localStorage.setItem("id", response.id);
+    localStorage.setItem("token", response.token);
+    window.location.replace("boards.html");
   }
 }
