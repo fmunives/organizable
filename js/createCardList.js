@@ -16,7 +16,6 @@ templateCard = document.getElementById("template-card");
 // the functions for all
 
 btnCloseBoard.onclick = () => (window.location.href = "boards.html");
-// console.log(allList);
 
 btnCreateList.forEach((btn) => {
   btn.onclick = (event) => {
@@ -34,7 +33,7 @@ function createForm(event) {
 
   formsCreated.forEach((formCreated) => {
     closeForm(formCreated);
-    formCreated.addEventListener("submit", (event) => {
+    formCreated.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const inputTitleList = formCreated.firstElementChild.value;
@@ -44,13 +43,39 @@ function createForm(event) {
       btnDelete.onclick = () => deleteList(currentList);
 
       const titleList = header.firstElementChild.firstElementChild;
-      titleList.textContent = inputTitleList;
+      const title = (titleList.textContent = inputTitleList);
+      const idBoard = localStorage.getItem("idBoard");
+      const response = await getBoardDetail(idBoard);
+      const lists = response.lists;
+      const pos = lists[lists.length - 1].pos;
+      const newPos = pos + 1;
+      saveHeaderList(title, newPos);
       currentList.append(header);
       currentList.after(createList());
 
       event.target.remove();
     });
   });
+}
+
+function saveHeaderList(title, pos) {
+  const newList = {
+    name: title,
+    pos: pos,
+    closed: false,
+  };
+  const idBoard = localStorage.getItem("idBoard");
+  const url = `http://localhost:3000/boards/${idBoard}/lists`;
+  const token = localStorage.getItem("token");
+  const options = {
+    method: "POST",
+    body: JSON.stringify(newList),
+    headers: {
+      Authorization: `Token token="${token}"`,
+      "Content-Type": "application/json",
+    },
+  };
+  fetch(url, options).then((response) => console.log(response));
 }
 
 function closeForm(form) {
@@ -205,6 +230,8 @@ function getBoardDetail(id) {
 async function showBoardDetail() {
   const idBoard = localStorage.getItem("idBoard");
   const boardInfo = await getBoardDetail(idBoard);
+
+  console.log(boardInfo);
   const title = document.querySelector(".board__title");
   const bg = document.querySelector("body");
   bg.style.background = boardInfo.color;
