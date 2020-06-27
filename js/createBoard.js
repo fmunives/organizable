@@ -6,7 +6,12 @@ bgBoardTitle = document.querySelector('.create-board__title');
 allBoardsCards = document.querySelectorAll('.list-boards__card');
 
 allColors.forEach((colorSelected) => {
-  colorSelected.onclick = () => (bgBoardTitle.style.backgroundColor = colorSelected.dataset.color);
+  colorSelected.addEventListener('click', () => {
+    bgBoardTitle.style.backgroundColor = colorSelected.dataset.color;
+
+    const datacolor = event.target.getAttribute('data-color');
+    bgBoardTitle.setAttribute('data-color', datacolor);
+  });
 });
 
 allBoardsCards.forEach((cardBoard) => {
