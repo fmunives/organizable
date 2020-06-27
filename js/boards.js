@@ -158,16 +158,25 @@ showActiveBoards();
 
 function newBoard() {
   event.preventDefault();
+
+  const color = (() => {
+    const value = document.querySelector('.create-board__title').getAttribute('data-color');
+    return Object.keys(colors).find((key) => colors[key] === value);
+  })();
+
   const board = {
     name: document.querySelector(".create-board__input").value,
     closed: false,
-    color: getComputedStyle(document.querySelector(".create-board__title"))[
-      "background-color"
-    ],
+    color: color,
     starred: false,
   };
   createBoard(board);
   showSingleBoard(board);
+
+  document.querySelector('.create-board__title').style.backgroundColor = colors.blue;
+  document.querySelector('.create-board__title').setAttribute('data-color', colors.blue);
+  document.querySelector('.create-board__input').value = '';
+  document.querySelector('#modal-create-board').classList.toggle('hide');
 }
 
 document.querySelector("#createBoardBtn").addEventListener("click", newBoard);
