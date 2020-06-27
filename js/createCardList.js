@@ -203,7 +203,8 @@ function getBoardDetail(id) {
 }
 
 async function showBoardDetail() {
-  const boardInfo = await getBoardDetail(1);
+  const idBoard = localStorage.getItem("idBoard");
+  const boardInfo = await getBoardDetail(idBoard);
   const title = document.querySelector(".board__title");
   const bg = document.querySelector("body");
   bg.style.background = boardInfo.color;

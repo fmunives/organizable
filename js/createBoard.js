@@ -4,6 +4,7 @@ closeModal = document.getElementById("close-modal");
 allColors = document.querySelectorAll(".set-color");
 bgBoardTitle = document.querySelector(".create-board__title");
 allBoardsCards = document.querySelectorAll(".list-boards__card");
+console.log(allBoardsCards);
 
 allColors.forEach((colorSelected) => {
   colorSelected.onclick = () =>
@@ -11,7 +12,7 @@ allColors.forEach((colorSelected) => {
 });
 
 allBoardsCards.forEach((cardBoard) => {
-  cardBoard.onclick = () => (window.location.href = `board.html`);
+  cardBoard.onclick = () => (window.location.href = "board.html");
 });
 
 btnCreateBoard.onclick = () => showModalCreateBoard(modalBoard);
