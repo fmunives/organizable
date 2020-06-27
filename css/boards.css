@@ -125,7 +125,7 @@
 }
 
 .create-board__input {
-  width: 100%;
+  width: 178px;
   outline: none;
   border: none;
   font-size: 16px;
@@ -135,12 +135,16 @@
   padding: 3px;
   margin-right: 5px;
   border-radius: 3px;
+  position: relative;
+  left: -30px;
 }
 
 .create-board__close {
   border: none;
   background: none;
   cursor: pointer;
+  left: -40px;
+  position: relative;
 }
 
 .create-board__colors {
@@ -158,31 +162,31 @@
   cursor: pointer;
 }
 
-.set-color[data-color="#0079BF"] {
+.set-color[data-color='#0079BF'] {
   background: #0079bf;
 }
-.set-color[data-color="#D29034"] {
+.set-color[data-color='#D29034'] {
   background: #d29034;
 }
-.set-color[data-color="#519839"] {
+.set-color[data-color='#519839'] {
   background: #519839;
 }
-.set-color[data-color="#B04632"] {
+.set-color[data-color='#B04632'] {
   background: #b04632;
 }
-.set-color[data-color="#89609E"] {
+.set-color[data-color='#89609E'] {
   background: #89609e;
 }
-.set-color[data-color="#CD5A90"] {
+.set-color[data-color='#CD5A90'] {
   background: #cd5a90;
 }
-.set-color[data-color="#4BBF6B"] {
+.set-color[data-color='#4BBF6B'] {
   background: #4bbf6b;
 }
-.set-color[data-color="#0AAECB"] {
+.set-color[data-color='#0AAECB'] {
   background: #0aaecb;
 }
-.set-color[data-color="#838C90"] {
+.set-color[data-color='#838C90'] {
   background: #838c90;
 }
 

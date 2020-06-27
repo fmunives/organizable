@@ -18,7 +18,7 @@ async function getBoards(token) {
     .then((data) => data);
 }
 
-function getBoardId(id) {
+async function getBoardId(id) {
   const fetchurl = `${url}/${id}`;
   const options = {
     method: 'GET',
@@ -39,7 +39,7 @@ function getBoardId(id) {
     });
 }
 
-function createBoard(board) {
+async function createBoard(board) {
   const options = {
     method: 'POST',
     body: JSON.stringify(board),
@@ -52,7 +52,7 @@ function createBoard(board) {
   fetch(url, options).then((res) => console.log(res));
 }
 
-function updateBoard(id, data) {
+async function updateBoard(id, data) {
   const fetchurl = `${url}/${id}`;
 
   const options = {
@@ -71,7 +71,7 @@ const data = {
   name: 'Organizable Updated!!',
 };
 
-function deleteBoard(id) {
+async function deleteBoard(id) {
   const fetchurl = `${url}/${id}`;
 
   const options = {
@@ -148,3 +148,17 @@ function showActiveBoards() {
 }
 
 showActiveBoards();
+
+function newBoard() {
+  event.preventDefault();
+  const board = {
+    name: document.querySelector('.create-board__input').value,
+    closed: false,
+    color: getComputedStyle(document.querySelector('.create-board__title'))['background-color'],
+    starred: false,
+  };
+  createBoard(board);
+  showSingleBoard(board);
+}
+
+document.querySelector('#createBoardBtn').addEventListener('click', newBoard);
