@@ -33,34 +33,13 @@
       </nav>
       <section id="myBoards" class="sections section-active">
         <div>
-          <h3 class="section-title">
-            <img src="./images/star.svg" alt="" /> Your Starred Boards
-          </h3>
-          <div class="list-boards">
-            <!-- <div class="list-boards__card">
-              Home
-              <div class="list-boards__options show" >
-                <button class="list-boards__option " ><img src="./images/small-star.svg" alt=""></button>
-              </div>
-            </div>
-            <div class="list-boards__card">Codeable</div>
-            <div class="list-boards__card">Portafolio</div> -->
-          </div>
+          <h3 class="section-title"><img src="./images/star.svg" alt="" /> Your Starred Boards</h3>
+          <div class="list-boards"></div>
         </div>
         <div>
-          <h3 class="section-title">
-            <img src="./images/codeable.svg" alt="" /> Your Boards
-          </h3>
+          <h3 class="section-title"><img src="./images/codeable.svg" alt="" /> Your Boards</h3>
           <div class="list-boards">
-            <!-- <div class="list-boards__card">DOTA
-              <div class="list-boards__options" >
-                <button class="list-boards__option" ><img src="./images/small-close.svg" alt=""></button>
-                <button class="list-boards__option" ><img src="./images/small-start-white.svg" alt=""></button>
-              </div>
-            </div>
-            <div class="list-boards__card">Consulting</div>
-            <div class="list-boards__card">LinkedIn</div> -->
-            <div class="list-boards__new" id="create-new-board" >
+            <div class="list-boards__new" id="create-new-board">
               Create new board
             </div>
           </div>
@@ -68,31 +47,14 @@
       </section>
       <section id="closedBoards" class="sections">
         <div>
-          <h3 class="section-title">
-            <img src="./images/close.svg" alt="" /> Closed boards
-          </h3>
-          <div class="list-boards">
-            <div class="list-boards__card">Codeable Postulation
-              <div class="list-boards__options" >
-                <button class="list-boards__option" ><img src="./images/trash.svg" alt=""></button>
-                <button class="list-boards__option" ><img src="./images/restart.svg" alt=""></button>
-              </div>
-            </div>
-            <div class="list-boards__card">Odin Project</div>
-          </div>
+          <h3 class="section-title"><img src="./images/close.svg" alt="" /> Closed boards</h3>
+          <div class="list-boards"></div>
         </div>
-        <div>
       </section>
       <section id="myProfile" class="sections">
         <form class="sign-up__form form__background">
           <label for="username" class="form__label">Username</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            class="form__text"
-            required
-          />
+          <input type="text" name="username" id="username" class="form__text" required />
           <!-- <label for="password" class="form__label">Password</label>
           <input
             type="password"
@@ -102,35 +64,24 @@
             required
           /> -->
           <label for="email" class="form__label">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            class="form__text"
-            required
-          />
+          <input type="email" name="email" id="email" class="form__text" required />
           <label for="first-name" class="form__label">First Name</label>
-          <input
-            type="text"
-            name="first-name"
-            id="first-name"
-            class="form__text"
-          />
+          <input type="text" name="first-name" id="first-name" class="form__text" />
           <label for="last-name" class="form__label">Last Name</label>
           <input type="text" name="last-name" id="last-name" class="form__text" />
-          <div class="flex justify-between" >
+          <div class="flex justify-between">
             <input
-            type="submit"
-            name="submit"
-            class="form__button form__button-ligth"
-            value="Edit"
-          />
+              type="submit"
+              name="submit"
+              class="form__button form__button-ligth"
+              value="Edit"
+            />
             <input
-            type="submit"
-            name="submit"
-            class="form__button form__button-red"
-            value="Delete"
-          />
+              type="submit"
+              name="submit"
+              class="form__button form__button-red"
+              value="Delete"
+            />
           </div>
           <!-- <a class="form__link" href="login.html">or login with existing user</a> -->
         </form>
@@ -141,11 +92,13 @@
     </main>
     <div id="modal-create-board" class="modal-new-board hide">
       <form class="create-board">
-        <div class="flex" >
-          <div class="create-board__title" >
-            <div class="flex" >
-              <input class="create-board__input" type="text" value="Board title" required >
-              <button class="create-board__close" id="close-modal"><img  src="./images/close-white.svg" alt=""></button>
+        <div class="flex">
+          <div class="create-board__title">
+            <div class="flex">
+              <button class="create-board__close" id="close-modal">
+                <img src="./images/close-white.svg" alt="" />
+              </button>
+              <input class="create-board__input" type="text" placeholder="Board title" required />
             </div>
           </div>
           <div class="create-board__colors">
@@ -160,10 +113,11 @@
             <div class="create-board__color set-color" data-color="#838C90"></div>
           </div>
         </div>
-        <div><input class="button"  type="submit" value="Create board"></div>
+        <div><input class="button" id="createBoardBtn" type="submit" value="Create board" /></div>
       </form>
     </div>
     <script src="./js/boards.js"></script>
     <script src="./js/menuBoards.js"></script>
     <script src="./js/createBoard.js"></script>
+  </body>
 </html>

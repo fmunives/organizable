@@ -6,7 +6,7 @@ bgBoardTitle = document.querySelector('.create-board__title');
 allBoardsCards = document.querySelectorAll('.list-boards__card');
 
 allColors.forEach((colorSelected) => {
-  colorSelected.onclick = () => (bgBoardTitle.style.background = colorSelected.dataset.color);
+  colorSelected.onclick = () => (bgBoardTitle.style.backgroundColor = colorSelected.dataset.color);
 });
 
 allBoardsCards.forEach((cardBoard) => {
