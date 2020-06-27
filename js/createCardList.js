@@ -11,7 +11,6 @@ btnCloseBoard = document.getElementById("close-board");
 
 templateFormCard = document.getElementById("template-form-card");
 templateCard = document.getElementById("template-card");
-// console.log(templateCard);
 
 // the functions for all
 
@@ -47,11 +46,18 @@ function createForm(event) {
       const idBoard = localStorage.getItem("idBoard");
       const response = await getBoardDetail(idBoard);
       const lists = response.lists;
-      const pos = lists[lists.length - 1].pos;
-      const newPos = pos + 1;
-      saveHeaderList(title, newPos);
-      currentList.append(header);
-      currentList.after(createList());
+      console.log("lists", lists);
+      if (lists.length > 0) {
+        const pos = lists[lists.length - 1].pos;
+        const newPos = pos + 1;
+        saveHeaderList(title, newPos);
+        currentList.append(header);
+        currentList.after(createList());
+      } else {
+        saveHeaderList(title, 1);
+        currentList.append(header);
+        currentList.after(createList());
+      }
 
       event.target.remove();
     });
@@ -101,8 +107,10 @@ function createHeaderList() {
   return [newHeaderList, btnDeleteList];
 }
 
-function createList() {
+function createList(newId) {
   const newList = cloneTemplate(templateList);
+  console.log("new list", (newList.firstElementChild.dataset.id = newId));
+  console.log("new list", newList.firstElementChild);
   const newBtn = newList.firstElementChild.firstElementChild;
 
   newBtn.onclick = () => createForm(event); //se añade un evento para crear un new form
@@ -111,42 +119,46 @@ function createList() {
 }
 
 function deleteList(list) {
+  console.log("id de list", list.dataset.id);
   list.remove();
-  //TODO delete list from the db
+  deleteListFromDB(list.dataset.id);
+}
+
+function deleteListFromDB(idList) {
+  const idBoard = localStorage.getItem("idBoard");
+  const url = `http://localhost:3000/boards/${idBoard}/lists/${idList}`;
+  const token = localStorage.getItem("token");
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Token token="${token}"`,
+    },
+  };
+  fetch(url, options)
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 }
 
 function createFormCard(template, event) {
   const formTemplateCard = cloneTemplate(template);
   const currentBtnCard = event.target;
-  // const btnCreateCard = formTemplateCard.firstElementChild.querySelector(
-  //   ".list__submit"
-  // );
 
   currentBtnCard.before(formTemplateCard);
   hideItem(currentBtnCard);
 
   getAllFormCards();
-
-  // console.log("form new", formCardCreated);
-  // return formCard;
 }
 
 function getAllFormCards() {
   formsCardCreated = document.querySelectorAll(".list__new-task");
   console.log(formsCardCreated);
-  // let btnShowDetailsCard = "";
   formsCardCreated.forEach((formCard) => {
     formCard.addEventListener("submit", (event) => {
       event.preventDefault();
       const titleCard = formCard.firstElementChild.value;
       createCard(templateCard, formCard, titleCard);
-      // btnShowDetailsCard.onclick = (event) => showCardDetails(event);
-      // console.log("btn deta 2, ", this.btnShowDetailsCard);
     });
-
-    // console.log("button details", btnShowDetailsCard);
-
-    // btnShowDetailsCard.onclick = (event) => showCardDetails(event);
 
     const btnDeleteForm = formCard.lastElementChild;
     const btnCreateCard = formCard.parentNode.lastElementChild;
@@ -201,10 +213,6 @@ function showItem(item) {
   item.classList.remove("hide");
 }
 
-// function insertBefore(currentItem, newItem) {
-//   currentItem.before(newItem);
-// }
-
 function cloneTemplate(item) {
   const newItem = document.importNode(item.content, true);
   return newItem;
@@ -256,7 +264,8 @@ async function showBoardDetail() {
       createCard(templateCard, btnAddCard, name);
     });
     index++;
-    currentList.after(createList());
+    const listId = list.listId;
+    currentList.after(createList(listId));
     currentForm.remove();
   });
 }
